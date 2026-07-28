@@ -9,6 +9,53 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: 'Ubuntu', 'Segoe UI', Arial, sans-serif; font-size: 14px; color: #1c1c1c; background: #fff; }
 
+/* CUSTOM CHECKBOX & RADIO — reset native appearance so every checkbox/radio
+   renders the same red-fill + white-check look everywhere (native browser/OS
+   checkboxes render as plain hollow squares, which is what looked "off"/unfinished
+   next to the styled cards). Per-element rules further down still control size. */
+input[type=checkbox], input[type=radio] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+  position: relative;
+  cursor: pointer;
+  background: #fff;
+  border: 1.5px solid #8e949f;
+  vertical-align: middle;
+}
+input[type=checkbox] { border-radius: 6px; }
+input[type=radio] { border-radius: 50%; }
+input[type=checkbox]:checked,
+input[type=radio]:checked {
+  background: #a01b36;
+  border-color: #a01b36;
+}
+input[type=checkbox]:focus-visible,
+input[type=radio]:focus-visible {
+  outline: 2px solid #000;
+  outline-offset: 2px;
+}
+input[type=checkbox]:checked::after,
+input[type=radio]:checked::after {
+  /* Real stylesheet draws this with .ic-check, a mask-image icon
+     (mask:url(ic-check.svg)) rather than a hand-drawn border shape.
+     Same mask technique here, inlined as a data URI since the SVG
+     asset itself isn't part of the exported CSS. */
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 65%;
+  height: 65%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M4 12.5L9.5 18L20 6' fill='none' stroke='%23000' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/></svg>") no-repeat center;
+  mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M4 12.5L9.5 18L20 6' fill='none' stroke='%23000' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/></svg>") no-repeat center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
 /* TOPBAR */
 .topbar { background: #e9f2fc; border-bottom: 1px solid #c1d2e5; display: flex; align-items: stretch; height: 58px; }
 .tb-logo { display: flex; align-items: center; padding: 0 22px 0 20px; border-right: 1px solid #c1d2e5; font-size: 23px; font-weight: 700; color: #1c1c1c; text-decoration: none; flex-shrink: 0; }
