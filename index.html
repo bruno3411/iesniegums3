@@ -450,11 +450,8 @@ input[type=radio]:focus-visible, input[type=radio]:focus {
         <input type="checkbox" id="cb-visiem-berniem" onchange="toggleDzVisiemBerniem(this)">
         <label for="cb-visiem-berniem">Visiem reģistrēt vienu un to pašu dzīvesvietas adresi ārvalstī</label>
       </div>
-      <div class="hint" style="font-style:normal;display:flex;align-items:flex-start;gap:6px;margin-bottom:20px;"><span style="display:inline-flex;align-items:center;justify-content:center;width:17px;height:17px;border-radius:50%;border:none;background:#2d313b;color:#fff;font-size:10px;font-weight:700;flex-shrink:0;margin-top:1px;">i</span>Ja iesniedzējs atzīmē šo izvēli, tad piedāvā adresi ievadīt vienu reizi un tā tiek pieregistrēta visām izvēlētajām personām. Ja iesniedzējs neatzīmē šo izvēli, tad adresi jāievada katrai izvēlētajai personai atsevišķi.</div>
 
-      <div id="dzPersonBlocksArea"></div>
-
-      <div id="dzSharedSection" style="display:none;">
+      <div id="dzSharedSection" style="display:none;margin-bottom:20px;">
         <div class="addr-fields">
           <div class="addr-row"><label class="addr-lbl">Valsts <span class="r">*</span></label><select class="addr-inp m" id="dzShared-valsts"></select></div>
           <div class="addr-row"><label class="addr-lbl">Pilsēta/reģions <span class="r">*</span></label><input type="text" class="addr-inp" id="dzShared-pilseta"></div>
@@ -462,6 +459,10 @@ input[type=radio]:focus-visible, input[type=radio]:focus {
           <div class="addr-row"><label class="addr-lbl">Pasta indekss</label><input type="text" class="addr-inp n" id="dzShared-pasta"></div>
         </div>
       </div>
+
+      <div class="hint" style="font-style:normal;display:flex;align-items:flex-start;gap:6px;margin-bottom:20px;"><span style="display:inline-flex;align-items:center;justify-content:center;width:17px;height:17px;border-radius:50%;border:none;background:#2d313b;color:#fff;font-size:10px;font-weight:700;flex-shrink:0;margin-top:1px;">i</span>Ja iesniedzējs atzīmē šo izvēli, tad piedāvā adresi ievadīt vienu reizi un tā tiek pieregistrēta visām izvēlētajām personām. Ja iesniedzējs neatzīmē šo izvēli, tad adresi jāievada katrai izvēlētajai personai atsevišķi.</div>
+
+      <div id="dzPersonBlocksArea"></div>
 
       <div class="sec-h" style="font-size:14px;font-weight:500;margin-top:22px;">Iesniegumam pievienoju šādus dokumentus</div>
       <div class="hint" style="font-style:normal;display:flex;align-items:flex-start;gap:6px;margin-bottom:14px;"><span style="display:inline-flex;align-items:center;justify-content:center;width:17px;height:17px;border-radius:50%;border:none;background:#2d313b;color:#fff;font-size:10px;font-weight:700;flex-shrink:0;margin-top:1px;">i</span>Jāpievieno informācijas izmaiņas apliecinoši dokumenti, ja tādi ir.</div>
@@ -493,14 +494,11 @@ input[type=radio]:focus-visible, input[type=radio]:focus {
         <input type="checkbox" id="cb-pasnodarbinatais" onchange="toggleNodGroup('pasnod', this)">
         <label for="cb-pasnodarbinatais">Esmu pašnodarbinātais</label>
       </div>
-      <div class="check-opt">
-        <input type="checkbox" id="cb-darba-nemejs" onchange="toggleNodGroup('darbin', this)">
-        <label for="cb-darba-nemejs">Esmu darba ņēmējs</label>
-      </div>
-      <div class="fr">
-        <div class="fl">valsts <span class="r">*</span></div>
-        <div class="fv">
-          <select class="addr-inp">
+      <div id="pasnodFields" style="display:none;margin-top:4px;">
+        <div class="fr">
+          <div class="fl">valsts <span class="r">*</span></div>
+          <div class="fv">
+            <select class="addr-inp" id="pasnod-valsts">
 <option value="" disabled selected>Izvēlieties valsti</option>
                 <option value="Austrija">Austrija</option>
                 <option value="Beļģija">Beļģija</option>
@@ -528,13 +526,12 @@ input[type=radio]:focus-visible, input[type=radio]:focus {
                 <option value="Spānija">Spānija</option>
                 <option value="Zviedrija">Zviedrija</option>
               </select>
+          </div>
         </div>
-      </div>
-      <div class="fr">
-        <div class="fl">Identifikācijas/sociālās apdrošināšanas numurs</div>
-        <div class="fv"><input type="text"></div>
-      </div>
-      <div id="pasnodFields" style="display:none;margin-top:4px;">
+        <div class="fr">
+          <div class="fl">Identifikācijas/sociālās apdrošināšanas numurs</div>
+          <div class="fv"><input type="text"></div>
+        </div>
         <div class="fr-2col">
           <div class="fr">
             <div class="fl">sākuma datums <span class="r">*</span></div>
@@ -545,9 +542,54 @@ input[type=radio]:focus-visible, input[type=radio]:focus {
             <div class="fv"><div class="dr"><input type="text" placeholder="dd.mm.gggg." class="n"><span class="cal">📅</span></div></div>
           </div>
         </div>
+        <div class="sec-h" style="font-size:14px;font-weight:500;margin-top:22px;">Iesniegumam pievienoju šādus dokumentus</div>
+        <div class="hint" style="font-style:normal;display:flex;align-items:flex-start;gap:6px;margin-bottom:14px;"><span style="display:inline-flex;align-items:center;justify-content:center;width:17px;height:17px;border-radius:50%;border:none;background:#2d313b;color:#fff;font-size:10px;font-weight:700;flex-shrink:0;margin-top:1px;">i</span>Jāpievieno informācijas izmaiņas apliecinoši dokumenti, ja tādi ir.</div>
+        <div id="dlist-b4a"></div>
+        <button class="btn-add" type="button" onclick="addDoc('dlist-b4a')" style="margin-top:4px;">+ Pievienot dokumentu</button>
       </div>
 
+      <div class="check-opt" style="margin-top:18px;">
+        <input type="checkbox" id="cb-darba-nemejs" onchange="toggleNodGroup('darbin', this)">
+        <label for="cb-darba-nemejs">Esmu darba ņēmējs</label>
+      </div>
       <div id="darbinFields" style="display:none;margin-top:4px;">
+        <div class="fr">
+          <div class="fl">valsts <span class="r">*</span></div>
+          <div class="fv">
+            <select class="addr-inp" id="darbin-valsts">
+<option value="" disabled selected>Izvēlieties valsti</option>
+                <option value="Austrija">Austrija</option>
+                <option value="Beļģija">Beļģija</option>
+                <option value="Bulgārija">Bulgārija</option>
+                <option value="Čehija">Čehija</option>
+                <option value="Dānija">Dānija</option>
+                <option value="Igaunija">Igaunija</option>
+                <option value="Somija">Somija</option>
+                <option value="Francija">Francija</option>
+                <option value="Vācija">Vācija</option>
+                <option value="Grieķija">Grieķija</option>
+                <option value="Ungārija">Ungārija</option>
+                <option value="Īrija">Īrija</option>
+                <option value="Itālija">Itālija</option>
+                <option value="Kipra">Kipra</option>
+                <option value="Lietuva">Lietuva</option>
+                <option value="Luksemburga">Luksemburga</option>
+                <option value="Malta">Malta</option>
+                <option value="Nīderlande">Nīderlande</option>
+                <option value="Polija">Polija</option>
+                <option value="Portugāle">Portugāle</option>
+                <option value="Rumānija">Rumānija</option>
+                <option value="Slovākija">Slovākija</option>
+                <option value="Slovēnija">Slovēnija</option>
+                <option value="Spānija">Spānija</option>
+                <option value="Zviedrija">Zviedrija</option>
+              </select>
+          </div>
+        </div>
+        <div class="fr">
+          <div class="fl">Identifikācijas/sociālās apdrošināšanas numurs</div>
+          <div class="fv"><input type="text"></div>
+        </div>
         <div class="fr">
           <div class="fl">darba devēja nosaukums <span class="r">*</span></div>
           <div class="fv"><input type="text"></div>
