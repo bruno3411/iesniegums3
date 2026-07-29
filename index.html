@@ -72,7 +72,7 @@ input[type=radio]:focus-visible, input[type=radio]:focus {
 
 /* PAGE HEADER */
 .pg-head { padding: 20px 0 0; }
-.pg-title { font-size: 26px; font-weight: 700; color: #1c1c1c; margin-bottom: 20px; letter-spacing: -0.2px; }
+.pg-title { font-size: 32px; font-weight: 700; line-height: 49px; color: #1c1c1c; margin-bottom: 20px; letter-spacing: -0.2px; }
 
 /* STEPPER */
 .stepper { display: flex; align-items: center; gap: 8px; }
@@ -89,8 +89,8 @@ input[type=radio]:focus-visible, input[type=radio]:focus {
 
 /* FORM BODY */
 .fbody { padding: 22px 0 0; }
-.sec-h { font-size: 17px; font-weight: 700; color: #1c1c1c; margin-bottom: 14px; }
-.sec-sub { font-size: 13.5px; color: #1c1c1c; margin-bottom: 4px; }
+.sec-h { font-size: 18px; font-weight: 500; line-height: 25px; color: #1c1c1c; margin-bottom: 14px; }
+.sec-sub { font-size: 16px; font-weight: 400; color: #1c1c1c; margin-bottom: 4px; }
 .sec-sub-i { font-size: 13px; color: #1c1c1c; font-style: italic; margin-bottom: 18px; }
 
 /* DIVIDER */
@@ -102,7 +102,7 @@ input[type=radio]:focus-visible, input[type=radio]:focus {
 .fl .r { color: #a01b36; font-weight: 700; }
 .fl .ti { display: inline-flex; align-items: center; justify-content: center; width: 17px; height: 17px; border-radius: 50%; border: 1.5px solid #999; color: #777; font-size: 11px; font-weight: 700; cursor: pointer; margin-left: 2px; vertical-align: middle; }
 .fv { width: 100%; }
-.fv input, .fv textarea, .fv select { width: 100%; max-width: 480px; border: 1px solid #8e949f; border-radius: 6px; padding: 14px 15px; font-size: 18px; line-height: 30px; font-family: inherit; color: #1c1c1c; background: #fff; outline: none; transition: border-color 0.15s; }
+.fv input, .fv textarea, .fv select { width: 100%; max-width: 480px; border: 1px solid #8e949f; border-radius: 6px; padding: 14px 15px; font-size: 18px; line-height: 30px; font-family: inherit; font-weight: 400; color: #1c1c1c; background: #fff; outline: none; transition: border-color 0.15s; }
 .fv input:focus, .fv textarea:focus { outline: #000 solid 2px; border-radius: 2px; border-color: transparent; }
 .fv input.n { max-width: 180px; }
 .fv input.m { max-width: 340px; }
@@ -117,18 +117,18 @@ input[type=radio]:focus-visible, input[type=radio]:focus {
 
 /* SELECTION PANEL (image 1 style) */
 .chg-select { margin: 4px 0 30px; }
-.chg-select .cs-title { font-size: 20px; font-weight: 700; color: #1c1c1c; margin-bottom: 10px; }
-.chg-select .cs-desc { font-size: 13.5px; color: #1c1c1c; line-height: 1.6; margin-bottom: 16px; }
+.chg-select .cs-title { font-size: 26px; font-weight: 500; line-height: 34px; color: #1c1c1c; margin-bottom: 10px; }
+.chg-select .cs-desc { font-size: 16px; font-weight: 400; color: #1c1c1c; line-height: 1.6; margin-bottom: 16px; }
 .chg-select .cs-req { font-size: 12.5px; color: #a01b36; margin-bottom: 20px; }
-.chg-select .cs-q { font-size: 14.5px; font-weight: 700; color: #1c1c1c; margin-bottom: 12px; }
+.chg-select .cs-q { font-size: 14px; font-weight: 500; color: #1c1c1c; margin-bottom: 12px; }
 .cs-opt-list { display: flex; flex-direction: column; gap: 16px; }
 .cs-opt { display: flex; align-items: center; gap: 12px; font-size: 18px; font-weight: 400; line-height: 30px; color: #1c1c1c; cursor: pointer; }
 .cs-opt input[type=checkbox] { width: 30px; height: 30px; border-radius: 6px; border: 1px solid #000; accent-color: #a01b36; cursor: pointer; flex-shrink: 0; }
 
 /* CARD BLOCK (image 2 style) — replaces old accordion blocks */
 .chg-card { background: #fff; border: 1.5px solid #d7d7d7; border-radius: 16px; padding: 22px 26px 26px; margin-bottom: 20px; }
-.chg-card-title { font-size: 19px; font-weight: 700; color: #1c1c1c; margin-bottom: 6px; }
-.chg-card-desc { font-size: 13px; color: #1c1c1c; line-height: 1.5; margin-bottom: 20px; }
+.chg-card-title { font-size: 18px; font-weight: 500; line-height: 25px; color: #1c1c1c; margin-bottom: 6px; }
+.chg-card-desc { font-size: 16px; font-weight: 400; color: #1c1c1c; line-height: 1.5; margin-bottom: 20px; }
 .chg-card .fr:last-child { margin-bottom: 0; }
 
 /* CHECKBOX BLOCKS (legacy — kept for any remaining accordion use) */
@@ -138,7 +138,7 @@ input[type=radio]:focus-visible, input[type=radio]:focus {
 .cb-trig input[type=checkbox] { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
 .cb-trig::after { content: '\276F'; position: absolute; right: 24px; top: 50%; transform: translateY(-50%) rotate(90deg); font-size: 14px; color: #444; transition: transform 0.2s; }
 .cb-blk.open .cb-trig::after { transform: translateY(-50%) rotate(-90deg); }
-.cb-txt { flex: 1; font-size: 18.5px; font-weight: 700; color: #1c1c1c; line-height: 1.4; padding-right: 30px; }
+.cb-txt { flex: 1; font-size: 18px; font-weight: 500; color: #1c1c1c; line-height: 25px; padding-right: 30px; }
 .cb-txt .sub { font-size: 13px; color: #1c1c1c; display: block; margin-top: 4px; font-weight: 400; font-style: italic; }
 .cb-bdy { display: none; padding: 4px 24px 24px 24px; background: #fff; border-top: 1px solid #eee; }
 .cb-blk.open .cb-bdy { display: block; }
@@ -162,7 +162,7 @@ input[type=radio]:focus-visible, input[type=radio]:focus {
 .docs-note { font-size: 12.5px; color: #1c1c1c; font-style: italic; margin-bottom: 10px; }
 .doc-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
 .doc-card { border: 1px solid #e0e0e0; border-radius: 4px; padding: 16px; margin-bottom: 12px; background: #fff; }
-.doc-row input { flex: 1; border: 1px solid #8e949f; border-radius: 6px; padding: 14px 15px; font-size: 18px; line-height: 30px; font-family: inherit; outline: none; }
+.doc-row input { flex: 1; border: 1px solid #8e949f; border-radius: 6px; padding: 14px 15px; font-size: 18px; line-height: 30px; font-family: inherit; font-weight: 400; color: #1c1c1c; outline: none; }
 .doc-row input:focus { outline: #000 solid 2px; border-radius: 2px; border-color: transparent; }
 .btn-rmd { background: none; border: none; font-size: 17px; color: #bbb; cursor: pointer; }
 .btn-rmd:hover { color: #a01b36; }
@@ -188,7 +188,7 @@ input[type=radio]:focus-visible, input[type=radio]:focus {
 .radio-opt input[type=radio] { width: 24px; height: 24px; border-radius: 50%; border: 1px solid #000; accent-color: #a01b36; cursor: pointer; flex-shrink: 0; }
 
 /* INFO NOTE */
-.info-note { font-size: 13px; color: #1c1c1c; margin-bottom: 16px; line-height: 1.6; }
+.info-note { font-size: 16px; font-weight: 400; color: #1c1c1c; margin-bottom: 16px; line-height: 1.6; }
 
 /* CHECK OPT (confirmations) */
 .check-opt { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px; font-size: 18px; font-weight: 400; line-height: 30px; color: #1c1c1c; }
@@ -201,7 +201,7 @@ input[type=radio]:focus-visible, input[type=radio]:focus {
 .addr-row:last-child { margin-bottom: 0; }
 .addr-lbl { font-size: 14px; color: #1c1c1c; margin-bottom: 5px; font-weight: 500; }
 .addr-lbl .r { color: #a01b36; font-weight: 700; }
-.addr-inp { width: 100%; border: 1px solid #8e949f; border-radius: 6px; padding: 14px 15px; font-size: 18px; line-height: 30px; font-family: inherit; color: #1c1c1c; background: #fff; outline: none; transition: border-color 0.15s; }
+.addr-inp { width: 100%; border: 1px solid #8e949f; border-radius: 6px; padding: 14px 15px; font-size: 18px; line-height: 30px; font-family: inherit; font-weight: 400; color: #1c1c1c; background: #fff; outline: none; transition: border-color 0.15s; }
 .addr-inp:focus { outline: #000 solid 2px; border-radius: 2px; border-color: transparent; }
 .addr-inp.m { max-width: 340px; }
 .addr-inp.n { max-width: 180px; }
@@ -227,7 +227,7 @@ input[type=radio]:focus-visible, input[type=radio]:focus {
 .berns-flbl .r { color: #a01b36; font-weight: 700; }
 .berns-flbl .ti { display: inline-flex; align-items: center; justify-content: center; width: 17px; height: 17px; border-radius: 50%; border: 1.5px solid #999; color: #777; font-size: 11px; font-weight: 700; cursor: pointer; margin-left: 1px; flex-shrink: 0; }
 .berns-fval { flex: 1; }
-.berns-fval input { width: 100%; max-width: 340px; border: 1px solid #8e949f; border-radius: 6px; padding: 14px 15px; font-size: 18px; line-height: 30px; font-family: inherit; color: #1c1c1c; background: #fff; outline: none; transition: border-color 0.15s; }
+.berns-fval input { width: 100%; max-width: 340px; border: 1px solid #8e949f; border-radius: 6px; padding: 14px 15px; font-size: 18px; line-height: 30px; font-family: inherit; font-weight: 400; color: #1c1c1c; background: #fff; outline: none; transition: border-color 0.15s; }
 .berns-fval input:focus { outline: #000 solid 2px; border-radius: 2px; border-color: transparent; }
 
 /* STACKED FIELD (label above, full-width input, helper text below) */
@@ -235,19 +235,19 @@ input[type=radio]:focus-visible, input[type=radio]:focus {
 .stk-lbl { font-size: 14px; font-weight: 500; color: #1c1c1c; margin-bottom: 6px; }
 .stk-lbl .r { color: #a01b36; font-weight: 700; }
 .sec-h .r { color: #a01b36; font-weight: 700; }
-.stk-field input { width: 100%; border: 1px solid #8e949f; border-radius: 6px; padding: 14px 15px; font-size: 18px; line-height: 30px; font-family: inherit; color: #1c1c1c; background: #fff; outline: none; transition: border-color 0.15s; }
+.stk-field input { width: 100%; border: 1px solid #8e949f; border-radius: 6px; padding: 14px 15px; font-size: 18px; line-height: 30px; font-family: inherit; font-weight: 400; color: #1c1c1c; background: #fff; outline: none; transition: border-color 0.15s; }
 .stk-field input:focus { outline: #000 solid 2px; border-radius: 2px; border-color: transparent; }
 .stk-help { display: flex; align-items: flex-start; gap: 6px; margin-top: 6px; font-size: 12px; color: #1c1c1c; line-height: 1.5; }
 .stk-help .hi { display: inline-flex; align-items: center; justify-content: center; width: 17px; height: 17px; border-radius: 50%; border: none; background: #2d313b; color: #fff; font-size: 10px; font-weight: 700; flex-shrink: 0; margin-top: 1px; font-style: normal; }
 .btn-piev-gray { min-height: 48px; padding: 12px 22px; border-radius: 6px; border: 2px solid #2d313b; background: #fff; color: #2d313b; font-size: 13.5px; font-weight: 500; cursor: pointer; font-family: inherit; margin-top: 4px; }
 .btn-piev-gray:hover { background: #f2f3f4; }
-.stk-section-h { font-size: 14.5px; font-weight: 700; color: #1c1c1c; margin: 22px 0 14px; }
+.stk-section-h { font-size: 18px; font-weight: 500; line-height: 25px; color: #1c1c1c; margin: 22px 0 14px; }
 .btn-saglabat { min-height: 48px; margin: 4px 0 14px 0; padding: 12px 22px; border-radius: 6px; border: 2px solid #c8a84b; background: #fff; color: #8b7020; font-size: 13px; font-weight: 500; cursor: pointer; font-family: inherit; }
 .btn-saglabat:hover { background: #fdf9ec; }
 
 /* DZĪVESVIETA — per-person block (image 4 style) */
 .person-block { border: 1px solid #ddd; border-radius: 12px; padding: 18px 20px 22px; margin-top: 16px; background: #fff; }
-.person-block-title { font-size: 15px; font-weight: 700; color: #1c1c1c; margin-bottom: 12px; }
+.person-block-title { font-size: 18px; font-weight: 500; line-height: 25px; color: #1c1c1c; margin-bottom: 12px; }
 .pb-sub-h { font-size: 14px; font-weight: 500; color: #1c1c1c; margin-bottom: 6px; }
 .pb-addr-line { font-size: 13px; color: #1c1c1c; margin-bottom: 3px; }
 .pb-addr-line strong { color: #1c1c1c; }
@@ -268,11 +268,16 @@ input[type=radio]:focus-visible, input[type=radio]:focus {
 .fr-3col { display: flex; gap: 20px; align-items: flex-start; margin-bottom: 10px; }
 .fr-3col .fr { flex: 1; min-width: 0; margin-bottom: 0; }
 .fr-3col .btn-rm-period-slot { flex: 0 0 24px; width: 24px; margin-top: 30px; }
-.fr-3col .btn-rm-period { background: none; border: none; font-size: 18px; color: #bbb; cursor: pointer; line-height: 1; padding: 4px; }
-.fr-3col .btn-rm-period:hover { color: #a01b36; }
 @media (max-width: 680px) {
   .fr-3col { flex-direction: column; gap: 0; }
 }
+
+/* Once a period's fields are filled in, it collapses into a plain-text
+   summary line with a trailing X to delete it (shared .btn-rm-period style
+   with the input-row remove button, so both look identical). */
+.btn-rm-period { background: none; border: none; font-size: 18px; color: #bbb; cursor: pointer; line-height: 1; padding: 4px; flex-shrink: 0; }
+.btn-rm-period:hover { color: #a01b36; }
+.soc-period-summary { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 4px; border-bottom: 1px solid #e0e0e0; font-size: 16px; font-weight: 400; color: #1c1c1c; }
 
 .ootis-result { font-size: 13.5px; color: #1c1c1c; padding: 8px 0 4px; }
 .ootis-result strong { color: #a01b36; }
@@ -298,7 +303,7 @@ input[type=radio]:focus-visible, input[type=radio]:focus {
 .study-card { border: 1px solid #ddd; border-radius: 6px; margin-bottom: 10px; overflow: hidden; background: #fff; }
 .study-head { display: flex; align-items: center; justify-content: space-between; padding: 14px 18px; cursor: pointer; user-select: none; }
 .study-head:hover { background: #f7f9fb; }
-.study-title { font-size: 14px; font-weight: 700; color: #1c1c1c; }
+.study-title { font-size: 18px; font-weight: 500; line-height: 25px; color: #1c1c1c; }
 .study-title .sub { font-size: 12px; color: #1c1c1c; font-weight: 400; margin-left: 6px; }
 .study-chev { font-size: 12px; color: #444; transition: transform 0.2s; }
 .study-card.open .study-chev { transform: rotate(180deg); }
@@ -458,7 +463,7 @@ input[type=radio]:focus-visible, input[type=radio]:focus {
         </div>
       </div>
 
-      <div class="sec-h" style="font-size:13.5px;margin-top:22px;">Iesniegumam pievienoju šādus dokumentus</div>
+      <div class="sec-h" style="font-size:14px;font-weight:500;margin-top:22px;">Iesniegumam pievienoju šādus dokumentus</div>
       <div class="hint" style="font-style:normal;display:flex;align-items:flex-start;gap:6px;margin-bottom:14px;"><span style="display:inline-flex;align-items:center;justify-content:center;width:17px;height:17px;border-radius:50%;border:none;background:#2d313b;color:#fff;font-size:10px;font-weight:700;flex-shrink:0;margin-top:1px;">i</span>Jāpievieno informācijas izmaiņas apliecinoši dokumenti, ja tādi ir.</div>
       <div id="dlist-b1a"></div>
       <button class="btn-add" type="button" onclick="addDoc('dlist-b1a')" style="margin-top:4px;">+ Pievienot dokumentu</button>
@@ -474,7 +479,7 @@ input[type=radio]:focus-visible, input[type=radio]:focus {
 
       <div id="socPersonBlocksArea"></div>
 
-      <div class="sec-h" style="font-size:13.5px;margin-top:22px;">Iesniegumam pievienoju šādus dokumentus</div>
+      <div class="sec-h" style="font-size:14px;font-weight:500;margin-top:22px;">Iesniegumam pievienoju šādus dokumentus</div>
       <div class="hint" style="font-style:normal;display:flex;align-items:flex-start;gap:6px;margin-bottom:14px;"><span style="display:inline-flex;align-items:center;justify-content:center;width:17px;height:17px;border-radius:50%;border:none;background:#2d313b;color:#fff;font-size:10px;font-weight:700;flex-shrink:0;margin-top:1px;">i</span>Jāpievieno informācijas izmaiņas apliecinoši dokumenti, ja tādi ir.</div>
       <div id="dlist-b3"></div>
       <button class="btn-add" type="button" onclick="addDoc('dlist-b3')" style="margin-top:4px;">+ Pievienot dokumentu</button>
@@ -559,7 +564,7 @@ input[type=radio]:focus-visible, input[type=radio]:focus {
         </div>
       </div>
 
-      <div class="sec-h" style="font-size:13.5px;margin-top:22px;">Iesniegumam pievienoju šādus dokumentus</div>
+      <div class="sec-h" style="font-size:14px;font-weight:500;margin-top:22px;">Iesniegumam pievienoju šādus dokumentus</div>
       <div class="hint" style="font-style:normal;display:flex;align-items:flex-start;gap:6px;margin-bottom:14px;"><span style="display:inline-flex;align-items:center;justify-content:center;width:17px;height:17px;border-radius:50%;border:none;background:#2d313b;color:#fff;font-size:10px;font-weight:700;flex-shrink:0;margin-top:1px;">i</span>Jāpievieno informācijas izmaiņas apliecinoši dokumenti, ja tādi ir.</div>
       <div id="dlist-b4"></div>
       <button class="btn-add" type="button" onclick="addDoc('dlist-b4')" style="margin-top:4px;">+ Pievienot dokumentu</button>
@@ -741,7 +746,7 @@ function buildIzPersonBlock(p) {
         <div class="fv"><div class="dr"><input type="text" placeholder="dd.mm.gggg." class="n"><span class="cal">📅</span></div></div>
       </div>
     </div>
-    <div class="sec-h" style="font-size:13.5px;margin-top:22px;">Iesniegumam pievienoju šādus dokumentus <span class="r">*</span></div>
+    <div class="sec-h" style="font-size:14px;font-weight:500;margin-top:22px;">Iesniegumam pievienoju šādus dokumentus <span class="r">*</span></div>
     <div id="dlist-${p.id}"></div>
     <button class="btn-add" type="button" onclick="addDoc('dlist-${p.id}')" style="margin-top:4px;">+ Pievienot dokumentu</button>`;
   return d;
@@ -809,8 +814,34 @@ function socPeriodRowHtml(pid, idx) {
     </div>`;
 }
 
+function socPeriodSummaryHtml(veidsText, sakuma, beigu, idx) {
+  let text = `${veidsText}, Sākuma datums: ${sakuma}`;
+  if (beigu) text += `, Beigu datums: ${beigu}`;
+  return `
+    <div class="soc-period-summary" data-idx="${idx}">
+      <span>${text}</span>
+      <button type="button" class="btn-rm-period" onclick="this.closest('[data-idx]').remove()">✕</button>
+    </div>`;
+}
+
 function addSocPeriodRow(pid) {
   const wrap = document.getElementById(pid + '-periods');
+  // If the period currently being edited has its required fields filled in,
+  // collapse it into a plain-text summary line (with its own delete X)
+  // before adding a new blank period underneath.
+  const openRows = wrap.querySelectorAll('.fr-3col');
+  if (openRows.length) {
+    const lastRow = openRows[openRows.length - 1];
+    const select = lastRow.querySelector('select');
+    const dateInputs = lastRow.querySelectorAll('input[type=text]');
+    const veidsText = (select && select.selectedIndex > 0) ? select.options[select.selectedIndex].text : '';
+    const sakuma = dateInputs[0] ? dateInputs[0].value.trim() : '';
+    const beigu = dateInputs[1] ? dateInputs[1].value.trim() : '';
+    if (veidsText && sakuma) {
+      const rowIdx = lastRow.dataset.idx;
+      lastRow.outerHTML = socPeriodSummaryHtml(veidsText, sakuma, beigu, rowIdx);
+    }
+  }
   const idx = wrap.children.length;
   wrap.insertAdjacentHTML('beforeend', socPeriodRowHtml(pid, idx));
 }
