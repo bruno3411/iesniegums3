@@ -403,9 +403,9 @@ input[type=radio]:focus-visible, input[type=radio]:focus {
       <div class="cs-opt-list">
         <label class="cs-opt"><input type="checkbox" id="sel-banka" onchange="updateVisibility()"> Bankas konts</label>
         <label class="cs-opt"><input type="checkbox" id="sel-dzives" onchange="updateVisibility()"> Dzīvesvieta</label>
-        <label class="cs-opt"><input type="checkbox" id="sel-soc" onchange="updateVisibility()"> Sociālie maksājumi</label>
+        <label class="cs-opt"><input type="checkbox" id="sel-soc" onchange="updateVisibility()"> Pensijas/pabalsti</label>
         <label class="cs-opt"><input type="checkbox" id="sel-nod" onchange="updateVisibility()"> Nodarbinātība</label>
-        <label class="cs-opt"><input type="checkbox" id="sel-izgl" onchange="updateVisibility()"> Izglītība</label>
+        <label class="cs-opt"><input type="checkbox" id="sel-izgl" onchange="updateVisibility()"> Mācības</label>
       </div>
     </div>
 
@@ -448,7 +448,7 @@ input[type=radio]:focus-visible, input[type=radio]:focus {
 
       <div class="check-opt" style="margin-top:18px;margin-bottom:6px;">
         <input type="checkbox" id="cb-visiem-berniem" onchange="toggleDzVisiemBerniem(this)">
-        <label for="cb-visiem-berniem">Visiem reģistrēt vienu un to pašu dzīvesvietas adresi ārvalstī</label>
+        <label for="cb-visiem-berniem">Visām atzīmētajām personām reģistrēt vienādu adresi</label>
       </div>
 
       <div id="dzSharedSection" style="display:none;margin-bottom:20px;">
@@ -472,7 +472,7 @@ input[type=radio]:focus-visible, input[type=radio]:focus {
 
     <!-- Sociālie maksājumi -->
     <div class="chg-card" id="card-soc">
-      <div class="chg-card-title">Sociālie maksājumi</div>
+      <div class="chg-card-title">Citas valsts pensija/pabalsts/atlīdzība</div>
       <div class="chg-card-desc">Citas valsts pensijas/pabalstu/atlīdzības saņemšanu. Jāpievieno informācijas izmaiņas apliecinoši dokumenti, ja tādi ir.</div>
 
       <div class="stk-lbl" style="margin-bottom:12px;">Par kurām personām veiksiet izmaiņas? <span class="r">*</span></div>
@@ -488,123 +488,11 @@ input[type=radio]:focus-visible, input[type=radio]:focus {
 
     <!-- Nodarbinātība -->
     <div class="chg-card" id="card-nod">
-      <div class="chg-card-title">Nodarbinātība</div>
+      <div class="chg-card-title">Nodarbinātība citā valstī</div>
       <div class="chg-card-desc">Nodarbinātību vai pašnodarbinātību citā valstī (aizpilda, ja Latvijā saņem kādu no pabalstiem vai pensiju priekšlaicīgi).</div>
-      <div class="check-opt" style="margin-top:6px;">
-        <input type="checkbox" id="cb-pasnodarbinatais" onchange="toggleNodGroup('pasnod', this)">
-        <label for="cb-pasnodarbinatais">Esmu pašnodarbinātais</label>
-      </div>
-      <div id="pasnodFields" style="display:none;margin-top:4px;">
-        <div class="fr">
-          <div class="fl">valsts <span class="r">*</span></div>
-          <div class="fv">
-            <select class="addr-inp" id="pasnod-valsts">
-<option value="" disabled selected>Izvēlieties valsti</option>
-                <option value="Austrija">Austrija</option>
-                <option value="Beļģija">Beļģija</option>
-                <option value="Bulgārija">Bulgārija</option>
-                <option value="Čehija">Čehija</option>
-                <option value="Dānija">Dānija</option>
-                <option value="Igaunija">Igaunija</option>
-                <option value="Somija">Somija</option>
-                <option value="Francija">Francija</option>
-                <option value="Vācija">Vācija</option>
-                <option value="Grieķija">Grieķija</option>
-                <option value="Ungārija">Ungārija</option>
-                <option value="Īrija">Īrija</option>
-                <option value="Itālija">Itālija</option>
-                <option value="Kipra">Kipra</option>
-                <option value="Lietuva">Lietuva</option>
-                <option value="Luksemburga">Luksemburga</option>
-                <option value="Malta">Malta</option>
-                <option value="Nīderlande">Nīderlande</option>
-                <option value="Polija">Polija</option>
-                <option value="Portugāle">Portugāle</option>
-                <option value="Rumānija">Rumānija</option>
-                <option value="Slovākija">Slovākija</option>
-                <option value="Slovēnija">Slovēnija</option>
-                <option value="Spānija">Spānija</option>
-                <option value="Zviedrija">Zviedrija</option>
-              </select>
-          </div>
-        </div>
-        <div class="fr">
-          <div class="fl">Identifikācijas/sociālās apdrošināšanas numurs</div>
-          <div class="fv"><input type="text"></div>
-        </div>
-        <div class="fr-2col">
-          <div class="fr">
-            <div class="fl">sākuma datums <span class="r">*</span></div>
-            <div class="fv"><div class="dr"><input type="text" placeholder="dd.mm.gggg." class="n"><span class="cal">📅</span></div></div>
-          </div>
-          <div class="fr">
-            <div class="fl">beigu datums (ja tāds ir)</div>
-            <div class="fv"><div class="dr"><input type="text" placeholder="dd.mm.gggg." class="n"><span class="cal">📅</span></div></div>
-          </div>
-        </div>
-        <div class="sec-h" style="font-size:14px;font-weight:500;margin-top:22px;">Iesniegumam pievienoju šādus dokumentus</div>
-        <div class="hint" style="font-style:normal;display:flex;align-items:flex-start;gap:6px;margin-bottom:14px;"><span style="display:inline-flex;align-items:center;justify-content:center;width:17px;height:17px;border-radius:50%;border:none;background:#2d313b;color:#fff;font-size:10px;font-weight:700;flex-shrink:0;margin-top:1px;">i</span>Jāpievieno informācijas izmaiņas apliecinoši dokumenti, ja tādi ir.</div>
-        <div id="dlist-b4a"></div>
-        <button class="btn-add" type="button" onclick="addDoc('dlist-b4a')" style="margin-top:4px;">+ Pievienot dokumentu</button>
-      </div>
 
-      <div class="check-opt" style="margin-top:18px;">
-        <input type="checkbox" id="cb-darba-nemejs" onchange="toggleNodGroup('darbin', this)">
-        <label for="cb-darba-nemejs">Esmu darba ņēmējs</label>
-      </div>
-      <div id="darbinFields" style="display:none;margin-top:4px;">
-        <div class="fr">
-          <div class="fl">valsts <span class="r">*</span></div>
-          <div class="fv">
-            <select class="addr-inp" id="darbin-valsts">
-<option value="" disabled selected>Izvēlieties valsti</option>
-                <option value="Austrija">Austrija</option>
-                <option value="Beļģija">Beļģija</option>
-                <option value="Bulgārija">Bulgārija</option>
-                <option value="Čehija">Čehija</option>
-                <option value="Dānija">Dānija</option>
-                <option value="Igaunija">Igaunija</option>
-                <option value="Somija">Somija</option>
-                <option value="Francija">Francija</option>
-                <option value="Vācija">Vācija</option>
-                <option value="Grieķija">Grieķija</option>
-                <option value="Ungārija">Ungārija</option>
-                <option value="Īrija">Īrija</option>
-                <option value="Itālija">Itālija</option>
-                <option value="Kipra">Kipra</option>
-                <option value="Lietuva">Lietuva</option>
-                <option value="Luksemburga">Luksemburga</option>
-                <option value="Malta">Malta</option>
-                <option value="Nīderlande">Nīderlande</option>
-                <option value="Polija">Polija</option>
-                <option value="Portugāle">Portugāle</option>
-                <option value="Rumānija">Rumānija</option>
-                <option value="Slovākija">Slovākija</option>
-                <option value="Slovēnija">Slovēnija</option>
-                <option value="Spānija">Spānija</option>
-                <option value="Zviedrija">Zviedrija</option>
-              </select>
-          </div>
-        </div>
-        <div class="fr">
-          <div class="fl">Identifikācijas/sociālās apdrošināšanas numurs</div>
-          <div class="fv"><input type="text"></div>
-        </div>
-        <div class="fr">
-          <div class="fl">darba devēja nosaukums <span class="r">*</span></div>
-          <div class="fv"><input type="text"></div>
-        </div>
-        <div class="fr-2col">
-          <div class="fr">
-            <div class="fl">sākuma datums <span class="r">*</span></div>
-            <div class="fv"><div class="dr"><input type="text" placeholder="dd.mm.gggg." class="n"><span class="cal">📅</span></div></div>
-          </div>
-          <div class="fr">
-            <div class="fl">beigu datums (ja tāds ir)</div>
-            <div class="fv"><div class="dr"><input type="text" placeholder="dd.mm.gggg." class="n"><span class="cal">📅</span></div></div>
-          </div>
-        </div>
-      </div>
+      <div id="nodEntriesArea"></div>
+      <button class="btn-add" type="button" onclick="addNodEntry()" style="margin-top:6px;margin-bottom:6px;">+ Pievienot vēl vienu valsti</button>
 
       <div class="sec-h" style="font-size:14px;font-weight:500;margin-top:22px;">Iesniegumam pievienoju šādus dokumentus</div>
       <div class="hint" style="font-style:normal;display:flex;align-items:flex-start;gap:6px;margin-bottom:14px;"><span style="display:inline-flex;align-items:center;justify-content:center;width:17px;height:17px;border-radius:50%;border:none;background:#2d313b;color:#fff;font-size:10px;font-weight:700;flex-shrink:0;margin-top:1px;">i</span>Jāpievieno informācijas izmaiņas apliecinoši dokumenti, ja tādi ir.</div>
@@ -614,7 +502,7 @@ input[type=radio]:focus-visible, input[type=radio]:focus {
 
     <!-- Izglītība -->
     <div class="chg-card" id="card-izgl">
-      <div class="chg-card-title">Izglītība</div>
+      <div class="chg-card-title">Mācības citā valstī</div>
       <div class="chg-card-desc">Mācībām citā valstī (aizpilda, ja saņem apgādnieka zaudējuma pensiju par sevi vai bērnu vai pabalstus par bērnu).</div>
 
       <div class="stk-lbl" style="margin-bottom:12px;">Par kurām personām veiksiet izmaiņas? <span class="r">*</span></div>
@@ -682,16 +570,9 @@ input[type=radio]:focus-visible, input[type=radio]:focus {
 </div>
 
 <script>
-const EU_VALSTIS = ["Austrija","Beļģija","Bulgārija","Čehija","Dānija","Igaunija","Somija","Francija","Vācija","Grieķija","Ungārija","Īrija","Itālija","Kipra","Lietuva","Luksemburga","Malta","Nīderlande","Polija","Portugāle","Rumānija","Slovākija","Slovēnija","Spānija","Zviedrija"];
-function euOptionsHtml() {
-  let opts = '<option value="" disabled selected>Izvēlieties valsti</option>';
-  EU_VALSTIS.forEach(v => { opts += '<option value="'+v+'">'+v+'</option>'; });
-  return opts;
-}
-
 /* Full world country list (Latvian names) used for Dzīvesvieta address entry */
 const WORLD_VALSTIS = ["Afganistāna","Albānija","Alžīrija","Andora","Angola","Antigva un Barbuda","Apvienotie Arābu Emirāti","Argentīna","Armēnija","Austrālija","Austrija","Azerbaidžāna","Bahamu Salas","Bahreina","Bangladeša","Barbadosa","Beliza","Beļģija","Benina","Baltkrievija","Bolīvija","Bosnija un Hercegovina","Botsvāna","Brazīlija","Bruneja","Bulgārija","Burkinafaso","Burundi","Butāna","Čada","Čehija","Čīle","Dānija","Dominika","Dominikānas Republika","Džibutija","Ekvadora","Ekvatoriālā Gvineja","Eritreja","Esvatini","Etiopija","Fidži","Filipīnas","Francija","Gabona","Gajāna","Gambija","Gana","Grenāda","Grieķija","Gruzija","Gvatemala","Gvineja","Gvineja-Bisava","Haiti","Hondurasa","Horvātija","Igaunija","Indija","Indonēzija","Irāka","Irāna","Īrija","Islande","Izraēla","Itālija","Jamaika","Japāna","Jaunzēlande","Jemena","Jordānija","Kaboverde","Kambodža","Kamerūna","Kanāda","Katāra","Kazahstāna","Kenija","Kipra","Kirgizstāna","Kiribati","Kolumbija","Komoru Salas","Kongo","Kongo Demokrātiskā Republika","Kostarika","Kotdivuāra","Kuba","Kuveita","Ķīna","Laosa","Latvija","Lesoto","Libāna","Libērija","Lībija","Lietuva","Lihtenšteina","Luksemburga","Madagaskara","Malaizija","Malāvija","Maldīvija","Mali","Malta","Maroka","Māršala Salas","Mauritānija","Maurīcija","Meksika","Melnkalne","Mikronēzija","Moldova","Monako","Mongolija","Mozambika","Mjanma","Namībija","Nauru","Nepāla","Nīderlande","Nikaragva","Nigēra","Nigērija","Norvēģija","Omāna","Pakistāna","Palau","Panama","Papua-Jaungvineja","Paragvaja","Peru","Polija","Portugāle","Krievija","Ruanda","Rumānija","Salvadora","Samoa","Sanmarīno","Santome un Prinsipi","Saūda Arābija","Senegāla","Serbija","Seišelu Salas","Singapūra","Sīrija","Sjerraleone","Slovākija","Slovēnija","Somālija","Somija","Spānija","Šrilanka","Sudāna","Surinama","Svētais Kitts un Nevisa","Svētais Vinsents un Grenadīnas","Svētā Lūcija","Šveice","Tadžikistāna","Taivāna","Taizeme","Tanzānija","Togo","Tonga","Trinidāda un Tobāgo","Tunisija","Turcija","Turkmenistāna","Tuvalu","Uganda","Ukraina","Ungārija","Urugvaja","Uzbekistāna","Vanuatu","Vatikāns","Venecuēla","Vjetnama","Vācija","Zambija","Zimbabve","Zviedrija"];
-const EU_EEZ_SET = new Set(["Austrija","Beļģija","Bulgārija","Čehija","Dānija","Igaunija","Somija","Francija","Vācija","Grieķija","Horvātija","Ungārija","Īrija","Itālija","Kipra","Latvija","Lietuva","Luksemburga","Malta","Nīderlande","Polija","Portugāle","Rumānija","Slovākija","Slovēnija","Spānija","Zviedrija","Islande","Lihtenšteina","Norvēģija"]);
+const EU_EEZ_SET = new Set(["Austrija","Beļģija","Bulgārija","Čehija","Dānija","Igaunija","Somija","Francija","Vācija","Grieķija","Horvātija","Ungārija","Īrija","Itālija","Kipra","Latvija","Lietuva","Luksemburga","Malta","Nīderlande","Polija","Portugāle","Rumānija","Slovākija","Slovēnija","Spānija","Zviedrija","Islande","Lihtenšteina","Norvēģija","Šveice","Apvienotā Karaliste"]);
 function worldOptionsHtml() {
   let opts = '<option value="" disabled selected>Izvēlieties valsti</option>';
   WORLD_VALSTIS.slice().sort((a,b) => a.localeCompare(b, 'lv')).forEach(v => { opts += '<option value="'+v+'">'+v+'</option>'; });
@@ -745,7 +626,7 @@ function buildIzPersonBlock(p) {
     <div class="person-block-title">${label}</div>
     <div class="fr">
       <div class="fl">valsts <span class="r">*</span></div>
-      <div class="fv"><select class="addr-inp m" id="${p.id}-valsts">${euOptionsHtml()}</select></div>
+      <div class="fv"><select class="addr-inp m" id="${p.id}-valsts">${worldOptionsHtml()}</select></div>
     </div>
     <div class="fr">
       <div class="fl">Identifikācijas/sociālās apdrošināšanas numurs</div>
@@ -898,7 +779,7 @@ function buildSocPersonBlock(p) {
     <div class="person-block-title">${label}</div>
     <div class="fr">
       <div class="fl">valsts <span class="r">*</span></div>
-      <div class="fv"><select class="addr-inp m" id="${p.id}-valsts">${euOptionsHtml()}</select></div>
+      <div class="fv"><select class="addr-inp m" id="${p.id}-valsts">${worldOptionsHtml()}</select></div>
     </div>
     <div class="fr">
       <div class="fl">Identifikācijas/sociālās apdrošināšanas numurs</div>
@@ -944,7 +825,7 @@ const DZ_PEOPLE = [
   renderDzPersonBlocks();
 })();
 
-document.getElementById('dzShared-valsts').innerHTML = euOptionsHtml();
+document.getElementById('dzShared-valsts').innerHTML = worldOptionsHtml();
 
 function toggleDzVisiemBerniem(cb) {
   const sharedSection = document.getElementById('dzSharedSection');
@@ -1083,8 +964,66 @@ function apskatitDokumentu(btn) {
   alert('Dokumenta priekšskatījums tiktu atvērts jaunā logā.');
 }
 
-function toggleNodGroup(group, cb) {
-  const fields = document.getElementById(group === 'pasnod' ? 'pasnodFields' : 'darbinFields');
+function nodEntryHtml(idx) {
+  const removable = idx > 0;
+  return `
+    <div class="person-block" id="nodEntry-${idx}" data-idx="${idx}" style="position:relative;">
+      ${removable ? `<button type="button" class="btn-rm" onclick="this.closest('[data-idx]').remove()">✕</button>` : ''}
+      <div class="fr">
+        <div class="fl">valsts <span class="r">*</span></div>
+        <div class="fv"><select class="addr-inp m" id="nod-${idx}-valsts">${worldOptionsHtml()}</select></div>
+      </div>
+      <div class="fr">
+        <div class="fl">Identifikācijas/sociālās apdrošināšanas numurs</div>
+        <div class="fv"><input type="text" class="m"></div>
+      </div>
+      <div class="stk-lbl" style="margin-bottom:12px;">Norādiet nodarbinātības veidu <span class="r">*</span></div>
+      <div class="check-opt" style="margin-top:6px;">
+        <input type="checkbox" id="nod-${idx}-pasnod" onchange="toggleNodEntryGroup(${idx}, 'pasnod', this)">
+        <label for="nod-${idx}-pasnod">Esmu pašnodarbinātais</label>
+      </div>
+      <div id="nod-${idx}-pasnodFields" style="display:none;margin-top:4px;margin-bottom:12px;">
+        <div class="fr-2col">
+          <div class="fr">
+            <div class="fl">sākuma datums</div>
+            <div class="fv"><div class="dr"><input type="text" placeholder="dd.mm.gggg." class="n"><span class="cal">📅</span></div></div>
+          </div>
+          <div class="fr">
+            <div class="fl">beigu datums (ja tāds ir)</div>
+            <div class="fv"><div class="dr"><input type="text" placeholder="dd.mm.gggg." class="n"><span class="cal">📅</span></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="check-opt" style="margin-top:6px;">
+        <input type="checkbox" id="nod-${idx}-darbin" onchange="toggleNodEntryGroup(${idx}, 'darbin', this)">
+        <label for="nod-${idx}-darbin">Esmu darba ņēmējs</label>
+      </div>
+      <div id="nod-${idx}-darbinFields" style="display:none;margin-top:4px;">
+        <div class="fr">
+          <div class="fl">darba devēja nosaukums <span class="r">*</span></div>
+          <div class="fv"><input type="text"></div>
+        </div>
+        <div class="fr-2col">
+          <div class="fr">
+            <div class="fl">sākuma datums <span class="r">*</span></div>
+            <div class="fv"><div class="dr"><input type="text" placeholder="dd.mm.gggg." class="n"><span class="cal">📅</span></div></div>
+          </div>
+          <div class="fr">
+            <div class="fl">beigu datums (ja tāds ir)</div>
+            <div class="fv"><div class="dr"><input type="text" placeholder="dd.mm.gggg." class="n"><span class="cal">📅</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>`;
+}
+let nodEntryCount = 0;
+function addNodEntry() {
+  const area = document.getElementById('nodEntriesArea');
+  area.insertAdjacentHTML('beforeend', nodEntryHtml(nodEntryCount));
+  nodEntryCount++;
+}
+function toggleNodEntryGroup(idx, group, cb) {
+  const fields = document.getElementById(`nod-${idx}-${group}Fields`);
   fields.style.display = cb.checked ? 'block' : 'none';
 }
 
@@ -1113,6 +1052,7 @@ function sub() {
 
 // initial visibility state
 updateVisibility();
+addNodEntry();
 </script>
 </body>
 </html>
