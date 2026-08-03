@@ -446,7 +446,7 @@ input[type=radio]:focus-visible, input[type=radio]:focus {
       <div class="stk-lbl" style="margin-bottom:12px;">Par kurām personām veiksiet izmaiņas? <span class="r">*</span></div>
       <div class="pakalp-list" id="dzPersonSelectList"></div>
 
-      <div class="check-opt" style="margin-top:18px;margin-bottom:6px;">
+      <div class="check-opt" style="margin-top:32px;margin-bottom:6px;">
         <input type="checkbox" id="cb-visiem-berniem" onchange="toggleDzVisiemBerniem(this)">
         <label for="cb-visiem-berniem">Visām atzīmētajām personām reģistrēt vienādu adresi</label>
       </div>
@@ -969,20 +969,20 @@ function nodEntryHtml(idx) {
   return `
     <div class="person-block" id="nodEntry-${idx}" data-idx="${idx}" style="position:relative;">
       ${removable ? `<button type="button" class="btn-rm" onclick="this.closest('[data-idx]').remove()">✕</button>` : ''}
-      <div class="fr">
-        <div class="fl">valsts <span class="r">*</span></div>
-        <div class="fv"><select class="addr-inp m" id="nod-${idx}-valsts">${worldOptionsHtml()}</select></div>
-      </div>
-      <div class="fr">
-        <div class="fl">Identifikācijas/sociālās apdrošināšanas numurs</div>
-        <div class="fv"><input type="text" class="m"></div>
-      </div>
       <div class="stk-lbl" style="margin-bottom:12px;">Norādiet nodarbinātības veidu <span class="r">*</span></div>
       <div class="check-opt" style="margin-top:6px;">
         <input type="checkbox" id="nod-${idx}-pasnod" onchange="toggleNodEntryGroup(${idx}, 'pasnod', this)">
         <label for="nod-${idx}-pasnod">Esmu pašnodarbinātais</label>
       </div>
-      <div id="nod-${idx}-pasnodFields" style="display:none;margin-top:4px;margin-bottom:12px;">
+      <div id="nod-${idx}-pasnodFields" style="display:none;margin-top:14px;margin-bottom:20px;">
+        <div class="fr">
+          <div class="fl">valsts <span class="r">*</span></div>
+          <div class="fv"><select class="addr-inp m" id="nod-${idx}-pasnod-valsts">${worldOptionsHtml()}</select></div>
+        </div>
+        <div class="fr">
+          <div class="fl">Identifikācijas/sociālās apdrošināšanas numurs</div>
+          <div class="fv"><input type="text" class="m"></div>
+        </div>
         <div class="fr-2col">
           <div class="fr">
             <div class="fl">sākuma datums</div>
@@ -994,11 +994,19 @@ function nodEntryHtml(idx) {
           </div>
         </div>
       </div>
-      <div class="check-opt" style="margin-top:6px;">
+      <div class="check-opt" style="margin-top:14px;">
         <input type="checkbox" id="nod-${idx}-darbin" onchange="toggleNodEntryGroup(${idx}, 'darbin', this)">
         <label for="nod-${idx}-darbin">Esmu darba ņēmējs</label>
       </div>
-      <div id="nod-${idx}-darbinFields" style="display:none;margin-top:4px;">
+      <div id="nod-${idx}-darbinFields" style="display:none;margin-top:14px;">
+        <div class="fr">
+          <div class="fl">valsts <span class="r">*</span></div>
+          <div class="fv"><select class="addr-inp m" id="nod-${idx}-darbin-valsts">${worldOptionsHtml()}</select></div>
+        </div>
+        <div class="fr">
+          <div class="fl">Identifikācijas/sociālās apdrošināšanas numurs</div>
+          <div class="fv"><input type="text" class="m"></div>
+        </div>
         <div class="fr">
           <div class="fl">darba devēja nosaukums <span class="r">*</span></div>
           <div class="fv"><input type="text"></div>
