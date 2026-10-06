@@ -965,33 +965,34 @@ function apskatitDokumentu(btn) {
 
 function nodEntryHtml(idx) {
   const removable = idx > 0;
-  return `
-    <div class="person-block" id="nodEntry-${idx}" data-idx="${idx}" style="position:relative;">
-      ${removable ? `<button type="button" class="btn-rm" onclick="this.closest('[data-idx]').remove()">✕</button>` : ''}
-      <div class="stk-lbl" style="margin-bottom:12px;">Norādiet nodarbinātības veidu <span class="r">*</span></div>
-      <div class="check-opt" style="margin-top:6px;">
-        <input type="checkbox" id="nod-${idx}-pasnod" onchange="toggleNodEntryGroup(${idx}, 'pasnod', this)">
-        <label for="nod-${idx}-pasnod">Esmu pašnodarbinātais</label>
-      </div>
-      <div id="nod-${idx}-pasnodFields" style="display:none;margin-top:14px;margin-bottom:20px;">
-        <div class="fr">
-          <div class="fl">valsts <span class="r">*</span></div>
-          <div class="fv"><select class="addr-inp m" id="nod-${idx}-pasnod-valsts">${worldOptionsHtml()}</select></div>
-        </div>
-        <div class="fr">
-          <div class="fl">Identifikācijas/sociālās apdrošināšanas numurs</div>
-          <div class="fv"><input type="text" class="m"></div>
-        </div>
+  const dateRow = (req) => `
         <div class="fr-2col">
           <div class="fr">
-            <div class="fl">sākuma datums</div>
+            <div class="fl">sākuma datums${req ? ' <span class="r">*</span>' : ''}</div>
             <div class="fv"><div class="dr"><input type="text" placeholder="dd.mm.gggg." class="n"><span class="cal">📅</span></div></div>
           </div>
           <div class="fr">
             <div class="fl">beigu datums (ja tāds ir)</div>
             <div class="fv"><div class="dr"><input type="text" placeholder="dd.mm.gggg." class="n"><span class="cal">📅</span></div></div>
           </div>
-        </div>
+        </div>`;
+  return `
+    <div class="person-block" id="nodEntry-${idx}" data-idx="${idx}" style="position:relative;">
+      ${removable ? `<button type="button" class="btn-rm" onclick="this.closest('[data-idx]').remove()">✕</button>` : ''}
+      <div class="fr">
+        <div class="fl">valsts <span class="r">*</span></div>
+        <div class="fv"><select class="addr-inp m" id="nod-${idx}-valsts">${worldOptionsHtml()}</select></div>
+      </div>
+      <div class="fr">
+        <div class="fl">Identifikācijas/sociālās apdrošināšanas numurs</div>
+        <div class="fv"><input type="text" class="m" id="nod-${idx}-id"></div>
+      </div>
+      <div class="stk-lbl" style="margin:20px 0 12px;">Norādiet nodarbinātības veidu <span class="r">*</span></div>
+      <div class="check-opt" style="margin-top:6px;">
+        <input type="checkbox" id="nod-${idx}-pasnod" onchange="toggleNodEntryGroup(${idx}, 'pasnod', this)">
+        <label for="nod-${idx}-pasnod">Esmu pašnodarbinātais</label>
+      </div>
+      <div id="nod-${idx}-pasnodFields" style="display:none;margin-top:14px;margin-bottom:20px;">${dateRow(false)}
       </div>
       <div class="check-opt" style="margin-top:14px;">
         <input type="checkbox" id="nod-${idx}-darbin" onchange="toggleNodEntryGroup(${idx}, 'darbin', this)">
@@ -999,27 +1000,9 @@ function nodEntryHtml(idx) {
       </div>
       <div id="nod-${idx}-darbinFields" style="display:none;margin-top:14px;">
         <div class="fr">
-          <div class="fl">valsts <span class="r">*</span></div>
-          <div class="fv"><select class="addr-inp m" id="nod-${idx}-darbin-valsts">${worldOptionsHtml()}</select></div>
-        </div>
-        <div class="fr">
-          <div class="fl">Identifikācijas/sociālās apdrošināšanas numurs</div>
-          <div class="fv"><input type="text" class="m"></div>
-        </div>
-        <div class="fr">
           <div class="fl">darba devēja nosaukums <span class="r">*</span></div>
           <div class="fv"><input type="text"></div>
-        </div>
-        <div class="fr-2col">
-          <div class="fr">
-            <div class="fl">sākuma datums <span class="r">*</span></div>
-            <div class="fv"><div class="dr"><input type="text" placeholder="dd.mm.gggg." class="n"><span class="cal">📅</span></div></div>
-          </div>
-          <div class="fr">
-            <div class="fl">beigu datums (ja tāds ir)</div>
-            <div class="fv"><div class="dr"><input type="text" placeholder="dd.mm.gggg." class="n"><span class="cal">📅</span></div></div>
-          </div>
-        </div>
+        </div>${dateRow(true)}
       </div>
     </div>`;
 }
@@ -1058,19 +1041,17 @@ function validateNod() {
   document.querySelectorAll('#nodEntriesArea [data-idx]').forEach(entry => {
     const i = entry.dataset.idx;
     const pas = document.getElementById(`nod-${i}-pasnod`), dar = document.getElementById(`nod-${i}-darbin`);
+    const vs = document.getElementById(`nod-${i}-valsts`); if (!vs.value) bad(vs);
     if (!pas.checked && !dar.checked) {
       ok = false;
       entry.querySelector('.stk-lbl').insertAdjacentHTML('afterend', '<div class="nod-err" style="color:#a01b36;font-size:14px;margin-bottom:8px;">Lūdzu atzīmējiet vismaz vienu nodarbinātības veidu.</div>');
       return;
     }
-    [['pasnod', pas], ['darbin', dar]].forEach(([g, cb]) => {
-      if (!cb.checked) return;
-      const box = document.getElementById(`nod-${i}-${g}Fields`);
-      const sel = box.querySelector('select');
-      if (!sel.value) bad(sel);
-      const t = box.querySelectorAll('input[type=text]'); // pasnod: ID, sākums, beigas; darbin: ID, darba devējs, sākums, beigas
-      if (g === 'darbin') { if (!t[1].value.trim()) bad(t[1]); if (!t[2].value.trim()) bad(t[2]); }
-    });
+    if (dar.checked) {
+      const t = document.getElementById(`nod-${i}-darbinFields`).querySelectorAll('input[type=text]'); // darba devējs, sākums, beigas
+      if (!t[0].value.trim()) bad(t[0]);
+      if (!t[1].value.trim()) bad(t[1]);
+    }
   });
   if (!ok) msgs.push('Nodarbinātība: aizpildiet obligātos laukus (valsts; darba ņēmējam — darba devējs un sākuma datums).');
   if (!ok) alert(msgs.join('\n'));
