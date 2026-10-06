@@ -324,6 +324,19 @@ input[type=radio]:focus-visible, input[type=radio]:focus {
   .outer { padding: 0 12px; }
   .chg-card { padding: 18px 16px 20px; }
 }
+
+/* wide stacked period form (soc payments) */
+.wide-form .fv input, .wide-form .fv select { max-width: 100%; }
+.wide-form .fr { margin-bottom: 22px; }
+.dr-wide { position: relative; width: 100%; }
+.dr-wide input { padding-right: 56px !important; }
+.dr-wide .cal-svg { position: absolute; right: 18px; top: 50%; transform: translateY(-50%); pointer-events: none; }
+.hint-i { display: flex; align-items: flex-start; gap: 8px; margin-top: 8px; font-size: 14px; color: #1c1c1c; }
+.info-i { display: inline-flex; align-items: center; justify-content: center; width: 17px; height: 17px; border-radius: 50%; background: #1c1c1c; color: #fff; font-size: 10px; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+.soc-period { position: relative; }
+.soc-period + .soc-period, .soc-period-summary + .soc-period { margin-top: 20px; padding-top: 30px; }
+.soc-period-x { position: absolute; right: 0; top: 4px; }
+#card-soc .btn-add { margin-top: 8px; }
 </style>
 </head>
 <body>
@@ -697,6 +710,7 @@ const SOC_PEOPLE = [
   { id: 'soc-c2', pk: '220310-98765', vards: 'Mārtiņš', uzvards: 'Ozoliņš' }
 ];
 
+const CAL_SVG = '<svg class="cal-svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1c1c1c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/><circle cx="8" cy="14.5" r=".6" fill="#1c1c1c"/><circle cx="12" cy="14.5" r=".6" fill="#1c1c1c"/></svg>';
 (function renderSocPersonSelect(){
   const wrap = document.getElementById('socPersonSelectList');
   SOC_PEOPLE.forEach(p => {
@@ -709,15 +723,23 @@ const SOC_PEOPLE = [
   renderSocPersonBlocks();
 })();
 
+function wideDate(label, req) {
+  return `
+      <div class="fr">
+        <div class="fl">${label}${req ? ' <span class="r">*</span>' : ''}</div>
+        <div class="fv"><div class="dr-wide"><input type="text" placeholder="dd.mm.gggg.">${CAL_SVG}</div></div>
+      </div>`;
+}
 function socPeriodRowHtml(pid, idx) {
   const removable = idx > 0;
   return `
-    <div class="fr-3col" data-idx="${idx}">
+    <div class="soc-period wide-form" data-idx="${idx}">
+      ${removable ? `<button type="button" class="btn-rm-period soc-period-x" onclick="this.closest('[data-idx]').remove()">✕</button>` : ''}
       <div class="fr">
-        <div class="fl">pakalpojuma veids <span class="r">*</span></div>
+        <div class="fl">Pakalpojuma veids <span class="r">*</span></div>
         <div class="fv">
           <select>
-            <option value="" disabled selected>Izvēlieties</option>
+            <option value="" disabled selected>Izvēlieties...</option>
             <option value="pensija">Pensija</option>
             <option value="atlidziba">Atlīdzība</option>
             <option value="pabalsts">Pabalsts</option>
@@ -725,19 +747,22 @@ function socPeriodRowHtml(pid, idx) {
         </div>
       </div>
       <div class="fr">
-        <div class="fl">sākuma datums <span class="r">*</span></div>
-        <div class="fv"><div class="dr"><input type="text" placeholder="dd.mm.gggg." class="n"><span class="cal">📅</span></div></div>
+        <div class="fl">Valsts <span class="r">*</span></div>
+        <div class="fv"><select class="soc-valsts">${worldOptionsHtml()}</select>
+          <div class="hint-i"><span class="info-i">i</span>Norādiet valsti, kurā reģistrēts pensijas/pabalsta/atlīdzības periods.</div></div>
       </div>
+      ${wideDate('Perioda citā valstī sākuma datums', true)}
+      ${wideDate('Perioda citā valstī beigu datums', false)}
       <div class="fr">
-        <div class="fl" style="white-space:nowrap;">beigu datums</div>
-        <div class="fv"><div class="dr"><input type="text" placeholder="dd.mm.gggg." class="n"><span class="cal">📅</span></div></div>
+        <div class="fl">Personas identifikācijas numurs atbilstošajā valstī</div>
+        <div class="fv"><input type="text" class="soc-id">
+          <div class="hint-i"><span class="info-i">i</span>Norādiet personas identifikācijas numuru atbilstošajā valstī.</div></div>
       </div>
-      <div class="btn-rm-period-slot">${removable ? `<button type="button" class="btn-rm-period" onclick="this.closest('[data-idx]').remove()">✕</button>` : ''}</div>
     </div>`;
 }
 
-function socPeriodSummaryHtml(veidsText, sakuma, beigu, idx) {
-  let text = `${veidsText}, Sākuma datums: ${sakuma}`;
+function socPeriodSummaryHtml(veidsText, valsts, sakuma, beigu, idx) {
+  let text = `${veidsText}, ${valsts}, Sākuma datums: ${sakuma}`;
   if (beigu) text += `, Beigu datums: ${beigu}`;
   return `
     <div class="soc-period-summary" data-idx="${idx}">
@@ -748,20 +773,18 @@ function socPeriodSummaryHtml(veidsText, sakuma, beigu, idx) {
 
 function addSocPeriodRow(pid) {
   const wrap = document.getElementById(pid + '-periods');
-  // If the period currently being edited has its required fields filled in,
-  // collapse it into a plain-text summary line (with its own delete X)
-  // before adding a new blank period underneath.
-  const openRows = wrap.querySelectorAll('.fr-3col');
+  // Collapse the open period into a text summary (with ✕) once required fields are filled
+  const openRows = wrap.querySelectorAll('.soc-period');
   if (openRows.length) {
     const lastRow = openRows[openRows.length - 1];
-    const select = lastRow.querySelector('select');
-    const dateInputs = lastRow.querySelectorAll('input[type=text]');
-    const veidsText = (select && select.selectedIndex > 0) ? select.options[select.selectedIndex].text : '';
-    const sakuma = dateInputs[0] ? dateInputs[0].value.trim() : '';
-    const beigu = dateInputs[1] ? dateInputs[1].value.trim() : '';
-    if (veidsText && sakuma) {
-      const rowIdx = lastRow.dataset.idx;
-      lastRow.outerHTML = socPeriodSummaryHtml(veidsText, sakuma, beigu, rowIdx);
+    const sels = lastRow.querySelectorAll('select');
+    const veids = sels[0], valsts = sels[1];
+    const inputs = lastRow.querySelectorAll('input[type=text]'); // sākums, beigas, ID
+    const veidsText = veids.selectedIndex > 0 ? veids.options[veids.selectedIndex].text : '';
+    const valstsText = valsts.value ? valsts.options[valsts.selectedIndex].text : '';
+    const sakuma = inputs[0].value.trim(), beigu = inputs[1].value.trim();
+    if (veidsText && valstsText && sakuma) {
+      lastRow.outerHTML = socPeriodSummaryHtml(veidsText, valstsText, sakuma, beigu, lastRow.dataset.idx);
     }
   }
   const idx = wrap.children.length;
@@ -776,16 +799,8 @@ function buildSocPersonBlock(p) {
   d.dataset.pid = p.id;
   d.innerHTML = `
     <div class="person-block-title">${label}</div>
-    <div class="fr">
-      <div class="fl">valsts <span class="r">*</span></div>
-      <div class="fv"><select class="addr-inp m" id="${p.id}-valsts">${worldOptionsHtml()}</select></div>
-    </div>
-    <div class="fr">
-      <div class="fl">Identifikācijas/sociālās apdrošināšanas numurs</div>
-      <div class="fv"><input type="text" class="m"></div>
-    </div>
     <div id="${p.id}-periods">${socPeriodRowHtml(p.id, 0)}</div>
-    <button class="btn-add" type="button" onclick="addSocPeriodRow('${p.id}')" style="margin-bottom:8px;">+ Pievienot vēl vienu periodu</button>`;
+    <button class="btn-add" type="button" onclick="addSocPeriodRow('${p.id}')" style="margin-bottom:8px;">+ Pievienot nākamo</button>`;
   return d;
 }
 
