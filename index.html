@@ -1049,7 +1049,35 @@ function addDoc(listId) {
 function rmDoc(btn) {
   btn.closest('.ootis-result-row').remove();
 }
+function validateNod() {
+  if (!document.getElementById('sel-nod').checked) return true;
+  let ok = true, msgs = [];
+  document.querySelectorAll('.nod-err').forEach(e => e.remove());
+  document.querySelectorAll('#nodEntriesArea .inp-err').forEach(e => e.classList.remove('inp-err'));
+  const bad = (el) => { el.classList.add('inp-err'); ok = false; };
+  document.querySelectorAll('#nodEntriesArea [data-idx]').forEach(entry => {
+    const i = entry.dataset.idx;
+    const pas = document.getElementById(`nod-${i}-pasnod`), dar = document.getElementById(`nod-${i}-darbin`);
+    if (!pas.checked && !dar.checked) {
+      ok = false;
+      entry.querySelector('.stk-lbl').insertAdjacentHTML('afterend', '<div class="nod-err" style="color:#a01b36;font-size:14px;margin-bottom:8px;">Lūdzu atzīmējiet vismaz vienu nodarbinātības veidu.</div>');
+      return;
+    }
+    [['pasnod', pas], ['darbin', dar]].forEach(([g, cb]) => {
+      if (!cb.checked) return;
+      const box = document.getElementById(`nod-${i}-${g}Fields`);
+      const sel = box.querySelector('select');
+      if (!sel.value) bad(sel);
+      const t = box.querySelectorAll('input[type=text]'); // pasnod: ID, sākums, beigas; darbin: ID, darba devējs, sākums, beigas
+      if (g === 'darbin') { if (!t[1].value.trim()) bad(t[1]); if (!t[2].value.trim()) bad(t[2]); }
+    });
+  });
+  if (!ok) msgs.push('Nodarbinātība: aizpildiet obligātos laukus (valsts; darba ņēmējam — darba devējs un sākuma datums).');
+  if (!ok) alert(msgs.join('\n'));
+  return ok;
+}
 function sub() {
+  if (!validateNod()) return;
   if(!document.getElementById('cb-vecaki').checked || !document.getElementById('cb-patiesa').checked){
     alert('Lūdzu apstipriniet visus nepieciešamos apliecinājumus.');
     return;
